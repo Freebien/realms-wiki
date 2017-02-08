@@ -12,15 +12,13 @@ RUN useradd -ms /bin/bash wiki
 
 USER wiki
 
-RUN git clone https://github.com/scragg0x/realms-wiki /home/wiki/realms-wiki
+RUN mkdir /home/wiki/realms-wiki
 
 WORKDIR /home/wiki/realms-wiki
 
 RUN virtualenv .venv && \
     . .venv/bin/activate && \
-    pip install -r requirements.txt
-
-RUN bower install
+    pip install realms-wiki
 
 ENV WORKERS=3
 ENV GEVENT_RESOLVER=ares
